@@ -5,11 +5,11 @@ A digital book reader in .opf .epub format for react native using epub.js librar
 ## Installation
 
 ```sh
-npm install @epubjs-react-native/core
+npm install @kaze-desu/epubjs
 ```
 
 ```sh
-yarn add @epubjs-react-native/core
+yarn add @kaze-desu/epubjs
 ```
 
 follow these steps below based on the type of project you want to apply this library:
@@ -52,7 +52,7 @@ Wrap your root component in ReaderProvider. If you have a vanilla React Native p
 ```tsx
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
-import { ReaderProvider } from '@epubjs-react-native/core';
+import { ReaderProvider } from '@kaze-desu/epubjs';
 import { name as appName } from './app.json';
 import App from './src/App';
 
@@ -76,7 +76,7 @@ After the above step you can initialize the reader as follows:
 import * as React from 'react';
 
 import { SafeAreaView } from 'react-native';
-import { Reader, useReader } from '@epubjs-react-native/core';
+import { Reader, useReader } from '@kaze-desu/epubjs';
 // import { useFileSystem } from '@epubjs-react-native/file-system'; // for Bare React Native project
 // import { useFileSystem } from '@epubjs-react-native/expo-file-system'; // for Expo project
 

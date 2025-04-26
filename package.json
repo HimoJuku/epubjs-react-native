@@ -1,7 +1,7 @@
 {
-  "name": "@epubjs-react-native/core",
-  "version": "1.4.7",
-  "description": "A digital book reader in .opf .epub format for react native using epub.js library inside a webview.",
+  "name": "@kaze-desu/epubjs",
+  "version": "1.0.1",
+  "description": "A custom version of @epubjs-react-native/core for HimoJuku",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -47,13 +47,13 @@
     "epub-reader",
     "epubjs"
   ],
-  "repository": "https://github.com/victorsoares96/epubjs-react-native",
-  "author": "Victor Soares <vitorsoares96@hotmail.com> (https://github.com/victorsoares96)",
+  "repository": "https://github.com/HimoJuku/epubjs-react-native",
+  "author": "HimoJuku(https://github.com/HimoJuku)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/victorsoares96/epubjs-react-native/issues"
-  },
-  "homepage": "https://github.com/victorsoares96/epubjs-react-native#readme",
+    "url": "https://github.com/HimoJuku/epubjs-react-native/issues"
+    },
+  "homepage": "https://github.com/HimoJuku/epubjs-react-native#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
