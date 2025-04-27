@@ -1,5 +1,5 @@
 {
-  "name": "@kaze-desu/epubjs",
+  "name": "@himojuku/epubjs-react-native",
   "version": "1.0.1",
   "description": "A custom version of @epubjs-react-native/core for HimoJuku",
   "main": "lib/commonjs/index",
