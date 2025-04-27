@@ -1,8 +1,8 @@
-name: Release & Publish
+name: Publish
 
 on:
   release:
-    types: [created]
+    types: [push]
 
 jobs:
   validate:
