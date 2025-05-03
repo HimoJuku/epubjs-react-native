@@ -36,7 +36,9 @@
     "release-to-examples": "yarn build && node ./scripts/release-to-examples.js",
     "example-bare": "yarn --cwd example-bare",
     "example-expo": "yarn --cwd example-expo",
-    "bootstrap": "yarn example-bare && yarn example-expo && yarn"
+    "bootstrap": "yarn example-bare && yarn example-expo && yarn",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "keywords": [
     "react",
@@ -52,7 +54,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/HimoJuku/epubjs-react-native/issues"
-    },
+  },
   "homepage": "https://github.com/HimoJuku/epubjs-react-native#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -136,5 +138,10 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "expo": "~52.0.46",
+    "react": "18.3.1",
+    "react-native": "0.76.9"
   }
 }
