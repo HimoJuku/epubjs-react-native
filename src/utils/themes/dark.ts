@@ -2,22 +2,34 @@ import type { Theme } from '../../types';
 
 export const dark: Theme = {
   'body': {
-    background: '#333',
+    background: '	#323232',
   },
   'span': {
-    color: '#fff !important',
+    color: '	#C0C0C0 !important',
   },
   'p': {
-    color: '#fff !important',
+    color: '	#C0C0C0 !important',
   },
   'li': {
-    color: '#fff !important',
+    color: '	#C0C0C0 !important',
   },
   'h1': {
-    color: '#fff !important',
+    color: '	#C0C0C0 !important',
   },
+  'h2': {
+    color: '	#C0C0C0 !important',
+  },
+  'h3': {
+    color: '	#C0C0C0 !important',
+  },
+  'div': {
+    color: '	#C0C0C0 !important',
+  },
+  
+
+
   'a': {
-    'color': '#fff !important',
+    'color': '#	#C0C0C0 !important',
     'pointer-events': 'auto',
     'cursor': 'pointer',
   },

@@ -13,7 +13,8 @@ import { isFsUri } from './utils/isFsUri';
 import jszip from './jszip';
 import epubjs from './epubjs';
 
-export function Reader({
+export function Reader(
+  {
   src,
   width = '100%',
   height = '100%',
@@ -76,7 +77,7 @@ export function Reader({
         const sourceType = getSourceType(src);
         const isExternalSource = isURL(src);
         const isSrcInFs = isFsUri(src);
-
+        
         if (!sourceType) {
           throw new Error(`Invalid source type: ${src}`);
         }
