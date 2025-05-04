@@ -1,6 +1,6 @@
 {
   "name": "@himojuku/epubjs-react-native",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A custom version of @epubjs-react-native/core for HimoJuku",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
