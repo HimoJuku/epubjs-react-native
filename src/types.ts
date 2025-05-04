@@ -352,6 +352,11 @@ export interface ReaderProps {
    */
   enableSwipe?: boolean;
   /**
+   * Enable flip swipe actions.
+   * Default is `false`
+   */
+  enableFlipSwipe?: boolean;
+  /**
    * Called when swipe left gesture is detected
    * @returns {void} void
    */
