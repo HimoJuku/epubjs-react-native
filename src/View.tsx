@@ -43,6 +43,7 @@ export function View({
   height,
   initialLocation,
   enableSwipe = true,
+  enableFlipSwipe = false,
   onSwipeLeft = () => {},
   onSwipeRight = () => {},
   onSwipeUp = () => {},
@@ -428,17 +429,29 @@ export function View({
       onLongPress={onLongPress}
       onSwipeLeft={() => {
         if (enableSwipe) {
-          goNext({
-            keepScrollOffset: keepScrollOffsetOnLocationChange,
-          });
+          if (enableFlipSwipe) {
+            goPrevious({
+              keepScrollOffset: keepScrollOffsetOnLocationChange,
+            });
+          } else {
+            goNext({
+              keepScrollOffset: keepScrollOffsetOnLocationChange,
+            });
+          }
           onSwipeLeft();
         }
       }}
       onSwipeRight={() => {
         if (enableSwipe) {
-          goPrevious({
-            keepScrollOffset: keepScrollOffsetOnLocationChange,
-          });
+          if (enableFlipSwipe) {
+            goNext({
+              keepScrollOffset: keepScrollOffsetOnLocationChange,
+            });
+          } else {
+            goPrevious({
+              keepScrollOffset: keepScrollOffsetOnLocationChange,
+            });
+          }
           onSwipeRight();
         }
       }}
