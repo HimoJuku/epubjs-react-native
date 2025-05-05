@@ -22,6 +22,7 @@ import type {
   Landmark,
   Flow,
   PaginateOptions,
+  Typesetting
 } from './types';
 import * as webViewInjectFunctions from './utils/webViewInjectFunctions';
 
@@ -38,6 +39,7 @@ type ActionMap<M extends { [index: string]: unknown }> = {
 
 enum Types {
   CHANGE_THEME = 'CHANGE_THEME',
+  CHANGE_TYPESETTING = 'CHANGE_TYPESETTING',
   CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE',
   CHANGE_FONT_FAMILY = 'CHANGE_FONT_FAMILY',
   SET_AT_START = 'SET_AT_START',
@@ -63,8 +65,10 @@ enum Types {
 
 type BookPayload = {
   [Types.CHANGE_THEME]: Theme;
+  [Types.CHANGE_TYPESETTING]: Typesetting;
   [Types.CHANGE_FONT_SIZE]: FontSize;
   [Types.CHANGE_FONT_FAMILY]: string;
+  [Types.CHANGE_TYPESETTING]: Typesetting;
   [Types.SET_AT_START]: boolean;
   [Types.SET_AT_END]: boolean;
   [Types.SET_KEY]: string;
@@ -98,6 +102,7 @@ type BookActions = ActionMap<BookPayload>[keyof ActionMap<BookPayload>];
 
 type InitialState = {
   theme: Theme;
+  typesetting: Typesetting;
   fontFamily: string;
   fontSize: FontSize;
   atStart: boolean;
@@ -157,6 +162,10 @@ export const defaultTheme: Theme = {
 
 const initialState: InitialState = {
   theme: defaultTheme,
+  typesetting: {
+    writingMode: 'horizontal-tb',
+    textOrientation: 'mixed',
+  },
   fontFamily: 'Helvetica',
   fontSize: '12pt',
   atStart: false,
@@ -194,6 +203,11 @@ function bookReducer(state: InitialState, action: BookActions): InitialState {
       return {
         ...state,
         theme: action.payload,
+      };
+    case Types.CHANGE_TYPESETTING:
+      return {
+        ...state,
+        typesetting: action.payload,
       };
     case Types.CHANGE_FONT_SIZE:
       return {
@@ -393,7 +407,15 @@ export interface ReaderContextProps {
    * ```
    */
   changeTheme: (theme: Theme) => void;
-
+  /**
+   * @param typesetting {@link Typesetting}
+   * @description Typesetting object.
+   * @example
+   * ```
+   * changeTypesetting({ writingMode: 'horizontal-tb', textOrientation: 'mixed' });
+   * ```
+   */
+  changeTypesetting: (typesetting: Typesetting) => void;
   /**
    * Change font size of all elements in the book
    * @param font
@@ -624,20 +646,20 @@ export interface ReaderContextProps {
 }
 
 const ReaderContext = createContext<ReaderContextProps>({
-  registerBook: () => {},
-  setAtStart: () => {},
-  setAtEnd: () => {},
-  setTotalLocations: () => {},
-  setCurrentLocation: () => {},
-  setMeta: () => {},
-  setProgress: () => {},
-  setLocations: () => {},
-  setIsLoading: () => {},
-  setIsRendering: () => {},
+  registerBook: () => { },
+  setAtStart: () => { },
+  setAtEnd: () => { },
+  setTotalLocations: () => { },
+  setCurrentLocation: () => { },
+  setMeta: () => { },
+  setProgress: () => { },
+  setLocations: () => { },
+  setIsLoading: () => { },
+  setIsRendering: () => { },
 
-  goToLocation: () => {},
-  goPrevious: () => {},
-  goNext: () => {},
+  goToLocation: () => { },
+  goPrevious: () => { },
+  goNext: () => { },
   getLocations: () => [],
   getCurrentLocation: () => null,
   getMeta: () => ({
@@ -650,26 +672,27 @@ const ReaderContext = createContext<ReaderContextProps>({
     rights: '',
   }),
 
-  search: () => {},
-  clearSearchResults: () => {},
-  setIsSearching: () => {},
+  search: () => { },
+  clearSearchResults: () => { },
+  setIsSearching: () => { },
 
-  changeTheme: () => {},
-  changeFontFamily: () => {},
-  changeFontSize: () => {},
+  changeTheme: () => { },
+  changeTypesetting: () => { },
+  changeFontFamily: () => { },
+  changeFontSize: () => { },
 
-  setKey: () => {},
+  setKey: () => { },
 
-  setSection: () => {},
-  setToc: () => {},
-  setLandmarks: () => {},
+  setSection: () => { },
+  setToc: () => { },
+  setLandmarks: () => { },
 
-  addBookmark: () => {},
-  removeBookmark: () => {},
-  removeBookmarks: () => {},
-  updateBookmark: () => {},
-  setBookmarks: () => {},
-  setIsBookmarked: () => {},
+  addBookmark: () => { },
+  removeBookmark: () => { },
+  removeBookmarks: () => { },
+  updateBookmark: () => { },
+  setBookmarks: () => { },
+  setIsBookmarked: () => { },
 
   key: '',
 
@@ -694,20 +717,20 @@ const ReaderContext = createContext<ReaderContextProps>({
 
   isSearching: false,
   searchResults: { results: [], totalResults: 0 },
-  setSearchResults: () => {},
+  setSearchResults: () => { },
 
-  removeSelection: () => {},
+  removeSelection: () => { },
 
-  addAnnotation: () => {},
-  addAnnotationByTagId: () => {},
-  updateAnnotation: () => {},
-  updateAnnotationByTagId: () => {},
-  removeAnnotation: () => {},
-  removeAnnotationByTagId: () => {},
-  removeAnnotationByCfi: () => {},
-  removeAnnotations: () => {},
-  setAnnotations: () => {},
-  setInitialAnnotations: () => {},
+  addAnnotation: () => { },
+  addAnnotationByTagId: () => { },
+  updateAnnotation: () => { },
+  updateAnnotationByTagId: () => { },
+  removeAnnotation: () => { },
+  removeAnnotationByTagId: () => { },
+  removeAnnotationByCfi: () => { },
+  removeAnnotations: () => { },
+  setAnnotations: () => { },
+  setInitialAnnotations: () => { },
   annotations: [],
   section: null,
   toc: [],
@@ -715,9 +738,9 @@ const ReaderContext = createContext<ReaderContextProps>({
   bookmarks: [],
   isBookmarked: false,
 
-  injectJavascript: () => {},
-  changeFlow: () => {},
-  setFlow: () => {},
+  injectJavascript: () => { },
+  changeFlow: () => { },
+  setFlow: () => { },
   flow: 'auto',
 });
 
@@ -732,12 +755,65 @@ function ReaderProvider({ children }: { children: React.ReactNode }) {
   const changeTheme = useCallback((theme: Theme) => {
     book.current?.injectJavaScript(`
       rendition.themes.register({ theme: ${JSON.stringify(theme)} });
-      rendition.themes.select('theme');
+      rendition.themes.select('theme');changeTheme
       rendition.views().forEach(view => view.pane ? view.pane.render() : null); true;
     `);
     dispatch({ type: Types.CHANGE_THEME, payload: theme });
   }, []);
-
+  const changeTypesetting = useCallback((typesetting: Typesetting) => {
+    book.current?.injectJavaScript(`
+      (function() {
+        try {
+          const themeId = 'typesetting-' + Date.now();
+          const isVertical = ['vertical-rl', 'vertical-lr'].includes('${typesetting.writingMode}');
+          
+          // 保存当前位置的CFI
+          const currentCfi = rendition.currentLocation().start.cfi;
+          
+          // 设置全局布局方向
+          const typesettingCSS = {
+            'body': {
+              'writing-mode': '${typesetting.writingMode}',
+              'text-orientation': '${typesetting.textOrientation}',
+              'height': '100%', 
+              'width': '100%'
+            },
+            // 确保段落正确显示
+            'p, div, section': {
+              'break-inside': 'auto', // 允许段落跨页
+              'white-space': 'normal'
+            }
+          };
+          
+          rendition.themes.register({ [themeId]: typesettingCSS });
+          rendition.themes.select(themeId);
+          
+          // 处理垂直模式的页面大小
+          if (isVertical) {
+            // 重置分页设置，使其适应垂直模式
+            rendition.flow('paginated', { 
+              width: '100%',
+              height: '100%',
+              gap: '0px',
+              flow: '${typesetting.writingMode}'
+            });
+          } else {
+            // 水平模式的分页
+            rendition.flow('paginated');
+          }
+          
+          // 使用保存的CFI重新显示
+          rendition.display(currentCfi);
+          
+          return true;
+        } catch(e) {
+          console.error('Error in typesetting:', e);
+          return false;
+        }
+      })();
+    `);
+    dispatch({ type: Types.CHANGE_TYPESETTING, payload: typesetting });
+  }, []);
   const changeFontFamily = useCallback((fontFamily: string) => {
     book.current?.injectJavaScript(`
       rendition.themes.font('${fontFamily}');
@@ -1267,6 +1343,7 @@ function ReaderProvider({ children }: { children: React.ReactNode }) {
       key: state.key,
 
       changeTheme,
+      changeTypesetting,
       changeFontFamily,
       changeFontSize,
       theme: state.theme,
@@ -1323,6 +1400,7 @@ function ReaderProvider({ children }: { children: React.ReactNode }) {
       changeFontFamily,
       changeFontSize,
       changeTheme,
+      changeTypesetting,
       getCurrentLocation,
       getMeta,
       getLocations,

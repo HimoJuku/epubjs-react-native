@@ -117,6 +117,11 @@ export type Theme = {
   };
 };
 
+export type Typesetting = {
+  writingMode: 'horizontal-tb' | 'vertical-rl' | 'vertical-lr';
+  textOrientation: 'mixed' | 'upright' | 'sideways';
+};
+
 export type SearchResult = {
   cfi: ePubCfi;
   section: Section;
