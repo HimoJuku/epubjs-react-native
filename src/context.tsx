@@ -755,16 +755,22 @@ function ReaderProvider({ children }: { children: React.ReactNode }) {
   const changeTheme = useCallback((theme: Theme) => {
     book.current?.injectJavaScript(`
       rendition.themes.register({ theme: ${JSON.stringify(theme)} });
-      rendition.themes.select('theme');changeTheme
+      rendition.themes.select('theme');
       rendition.views().forEach(view => view.pane ? view.pane.render() : null); true;
     `);
     dispatch({ type: Types.CHANGE_THEME, payload: theme });
   }, []);
   const changeTypesetting = useCallback((typesetting: Typesetting) => {
     book.current?.injectJavaScript(`
-      rendition.themes.override('writing-mode', '${typesetting.writingMode}');
-      rendition.themes.override('text-orientation', '${typesetting.textOrientation}');
-      rendition.views().forEach(view => view.pane ? view.pane.render() : null); true;
+      rendition.hooks.content.register(function(contents) {
+        contents.writingMode(${typesetting.writingMode});
+        contents.size(rendition.settings.width, rendition.settings.height);
+      });
+      rendition.getContents().forEach(contents => {
+        contents.writingMode${typesetting.writingMode});
+        contents.size(rendition.settings.width, rendition.settings.height);
+      });
+      true;
     `);
     dispatch({ type: Types.CHANGE_TYPESETTING, payload: typesetting });
   }, []);
