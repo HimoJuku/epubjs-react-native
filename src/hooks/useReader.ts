@@ -6,6 +6,7 @@ export function useReader() {
     changeFontSize,
     changeFontFamily,
     changeTheme,
+    changeTypesetting,
     goToLocation,
     goPrevious,
     goNext,
@@ -53,6 +54,7 @@ export function useReader() {
     changeFontSize,
     changeFontFamily,
     changeTheme,
+    changeTypesetting,
     goToLocation,
     goPrevious,
     goNext,
@@ -99,6 +101,7 @@ export function useReader() {
     | 'changeFontSize'
     | 'changeFontFamily'
     | 'changeTheme'
+    | 'changeTypesetting'
     | 'goToLocation'
     | 'goPrevious'
     | 'goNext'
