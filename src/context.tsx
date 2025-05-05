@@ -762,55 +762,9 @@ function ReaderProvider({ children }: { children: React.ReactNode }) {
   }, []);
   const changeTypesetting = useCallback((typesetting: Typesetting) => {
     book.current?.injectJavaScript(`
-      (function() {
-        try {
-          const themeId = 'typesetting-' + Date.now();
-          const isVertical = ['vertical-rl', 'vertical-lr'].includes('${typesetting.writingMode}');
-          
-          // 保存当前位置的CFI
-          const currentCfi = rendition.currentLocation().start.cfi;
-          
-          // 设置全局布局方向
-          const typesettingCSS = {
-            'body': {
-              'writing-mode': '${typesetting.writingMode}',
-              'text-orientation': '${typesetting.textOrientation}',
-              'height': '100%', 
-              'width': '100%'
-            },
-            // 确保段落正确显示
-            'p, div, section': {
-              'break-inside': 'auto', // 允许段落跨页
-              'white-space': 'normal'
-            }
-          };
-          
-          rendition.themes.register({ [themeId]: typesettingCSS });
-          rendition.themes.select(themeId);
-          
-          // 处理垂直模式的页面大小
-          if (isVertical) {
-            // 重置分页设置，使其适应垂直模式
-            rendition.flow('paginated', { 
-              width: '100%',
-              height: '100%',
-              gap: '0px',
-              flow: '${typesetting.writingMode}'
-            });
-          } else {
-            // 水平模式的分页
-            rendition.flow('paginated');
-          }
-          
-          // 使用保存的CFI重新显示
-          rendition.display(currentCfi);
-          
-          return true;
-        } catch(e) {
-          console.error('Error in typesetting:', e);
-          return false;
-        }
-      })();
+      rendition.themes.override('writing-mode', '${typesetting.writingMode}');
+      rendition.themes.override('text-orientation', '${typesetting.textOrientation}');
+      rendition.views().forEach(view => view.pane ? view.pane.render() : null); true;
     `);
     dispatch({ type: Types.CHANGE_TYPESETTING, payload: typesetting });
   }, []);
